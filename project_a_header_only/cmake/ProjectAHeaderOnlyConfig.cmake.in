@@ -1,0 +1,5 @@
+get_filename_component(ProjectAHeaderOnly_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+if(NOT TARGET ProjectAHeaderOnly::project_a_header_only)
+    include("${ProjectAHeaderOnly_CMAKE_DIR}/ProjectAHeaderOnlyTargets.cmake")
+endif()
