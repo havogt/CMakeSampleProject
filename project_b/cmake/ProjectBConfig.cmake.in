@@ -1,0 +1,8 @@
+get_filename_component(ProjectB_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+# should the project_b target bring it already?
+find_package(ProjectA 0.1 REQUIRED)
+
+if(NOT TARGET ProjectB::project_b)
+    include("${ProjectB_CMAKE_DIR}/ProjectBTargets.cmake")
+endif()
