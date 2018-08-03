@@ -1,14 +1,14 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
 project(ProjectA VERSION 0.1)
 enable_language(CXX)
 
-# build the library
-add_library(project_a
+# to make things complicated, first build an object library
+add_library(project_a_objects OBJECT 
         src/private/project_a_private.cpp
         src/public/project_a_public.cpp
         )
 
-target_include_directories(project_a
+target_include_directories(project_a_objects
         PUBLIC
             $<INSTALL_INTERFACE:include>
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -16,7 +16,11 @@ target_include_directories(project_a
             ${CMAKE_CURRENT_SOURCE_DIR}/src
         )
         
-target_compile_features(project_a PRIVATE cxx_std_11)  
+target_compile_features(project_a_objects PRIVATE cxx_std_11)  
+        
+# build the library
+add_library(project_a)
+target_link_libraries(project_a PUBLIC project_a_objects)
 
 # generate cmake version file and config and install
 include(GNUInstallDirs)
@@ -39,7 +43,7 @@ install(FILES
     )    
 
 # install the library with targets
-install(TARGETS project_a
+install(TARGETS project_a project_a_objects
     EXPORT project_a-export
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
