@@ -55,7 +55,7 @@ yoda_create_library(
 #        )
 
 # Is it possible with yoda?
-#target_compile_features(project_a_objectsObjects PRIVATE cxx_std_11)  
+target_compile_features(project_aObjects PRIVATE cxx_std_11)  
         
 # build the library
 #add_library(project_a)
