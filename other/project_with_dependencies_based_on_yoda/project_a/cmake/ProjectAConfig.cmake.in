@@ -1,5 +1,6 @@
+#probably yoda should install to lib64/cmake not cmake
 get_filename_component(ProjectA_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 
 if(NOT TARGET ProjectA::project_a)
-    include("${ProjectA_CMAKE_DIR}/ProjectATargets.cmake")
+    include("${ProjectA_CMAKE_DIR}/../../cmake/ProjectATargets.cmake")
 endif()

@@ -11,7 +11,7 @@ add_library(project_b
         )
 
 target_link_libraries(project_b
-        PRIVATE ProjectA::project_a
+        PRIVATE ProjectA::ProjectAStatic
         PUBLIC ProjectAHeaderOnly::project_a_header_only #needs to be public as project_c wants to call a template from project_a_header_only via project_b
         )
 
