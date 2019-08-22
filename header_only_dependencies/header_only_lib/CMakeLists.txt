@@ -1,0 +1,2 @@
+add_library(my_header_only_lib INTERFACE)
+target_include_directories(my_header_only_lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
